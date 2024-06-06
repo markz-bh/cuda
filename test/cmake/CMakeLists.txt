@@ -51,3 +51,8 @@ set_property(TARGET ex3 PROPERTY CUDA_SEPARABLE_COMPILATION ON)
 if(MSVC)
 set_target_properties(ex3 PROPERTIES VS_DEBUGGER_COMMAND_ARGUMENTS "32 0")
 endif()
+
+add_executable(bicgstab bicgstab/bicgstab_example.c)
+target_include_directories(bicgstab PUBLIC ${CMAKE_CUDA_TOOLKIT_INCLUDE_DIRECTORIES})
+target_link_libraries(bicgstab PUBLIC cudart cusparse cublas)
+set_target_properties(bicgstab PROPERTIES LINKER_LANGUAGE CUDA)
